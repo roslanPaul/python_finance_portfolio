@@ -83,3 +83,26 @@ for i in range(len(années)):
 
 print("\nTaux en 2020 : ", taux_par_annee[2020], "%")
 print("Taux en 2023 :", taux_par_annee[2023], "%")
+
+# -----------------------------------------------------------------------------
+# PARTIE 3 — BOUCLE FOR : parcourir les données année par année
+# -----------------------------------------------------------------------------
+# Analogie : un for c'est comme lire un relevé bancaire ligne par ligne.
+#            On prend chaque ligne, on fait quelque chose avec, on passe à la suivante.
+# -----------------------------------------------------------------------------
+
+print("\n--- Historique des taux OAT 10 ans ---")
+for annee, taux in zip(années, taux_oat_historique):
+    # zip() colle les deux listes ensemble comme deux colonnes d'un tableau
+    if taux < 0:
+        commentaire = "NEGATIF"
+    elif taux < 1.0:
+        commentaire = "Bas"
+    elif taux < 2.0: 
+        commentaire = "Modéré"
+    else:
+        commentaire = "Elevé"
+    print(f" {annee} : {taux:>5.2f}% → {commentaire}")
+    # f"..." = f-string : on insère des variables directement dans la chaine
+    # {taux:>5.2f} signifie : aligner à droite (>), largeur 5, 2 décimales (.2f)
+    
