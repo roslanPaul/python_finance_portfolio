@@ -146,3 +146,26 @@ print(f"\n--- Simulation    : {capital_de_depart:,.0f}€ investis en OAT 10 ans
 print(f"Capital de départ   : {capital_de_depart:>12,.2f} €")
 print(f"Capital final       : {capital_final:>12,.2f} €")
 print(f"Gain total          : {((capital_final / capital_de_depart) - 1) * 100:>11.2f} %")
+
+# -----------------------------------------------------------------------------
+# PARTIE 5 — BOUCLE WHILE : trouver l'année où le capital dépasse un seuil
+# -----------------------------------------------------------------------------
+# Analogie : un while c'est comme regarder sa montre en attendant le bus.
+#            On répète "n'est-il pas arrivé ?" jusqu'à ce qu'il arrive.
+# -----------------------------------------------------------------------------
+
+seuil_cible = 10500.0
+
+print(f"\n--- Quand le capital dépasse {seuil_cible:,.0f}€ ? ---")
+
+i = 0
+while i < len(historique_capital):
+    if historique_capital[i] >= seuil_cible:
+        annee_cible = 2014 + i
+        print(f"Le capital a dépassé {seuil_cible:,.0f}€ en {annee_cible} "
+              f"(valeur : {historique_capital[i]:,.2f}€")
+        break
+    i += 1
+else:
+    # Le bloc 'else' d'un while s'execute SEULEMENT si la boucle finit sans 'break'
+    print(f"Le capital n'a jamais dépassé {seuil_cible:,.0f}€ sur la période.")
