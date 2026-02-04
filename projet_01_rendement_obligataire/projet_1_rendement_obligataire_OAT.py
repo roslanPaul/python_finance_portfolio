@@ -106,3 +106,43 @@ for annee, taux in zip(années, taux_oat_historique):
     # f"..." = f-string : on insère des variables directement dans la chaine
     # {taux:>5.2f} signifie : aligner à droite (>), largeur 5, 2 décimales (.2f)
     
+# -----------------------------------------------------------------------------
+# PARTIE 4 — FONCTION : capitalisation avec taux variable année par année
+# -----------------------------------------------------------------------------
+# Analogie : une fonction c'est une recette de cuisine.
+#            On écrit la recette UNE FOIS, puis on l'appelle autant de fois qu'on veut
+#            avec des ingrédients différents (les arguments).
+# -----------------------------------------------------------------------------
+
+def capitalisation_taux_variable(capital_initial, liste_taux_annuels):
+    """
+    Calcule la valeur finale d'un capital investissement en obligataire,
+    avec un taux qui change chaque année.
+
+    Arguments :
+        capital_initial      : montant investi au jour 1 (float)
+        liste_taux_annuels   : liste des taux en pourcentage chaque année (list of float)
+
+    Retourne :
+        capital_final        : valeur du capital après N années (float)
+        historique           : liste des valeurs du capital chaque année (list of float)
+    """
+    
+    capital = capital_initial 
+    historique = [capital]
+    
+    for taux in liste_taux_annuels :
+        taux_decimal = taux / 100
+        capital = capital * (1 + taux_decimal)  # formule : C(n+1) = C(n) * (1+r)
+        historique.append(capital)
+    
+    return capital, historique      # on retourne DEUX valeurs (tuple)
+
+# On appelle la fonction avec 10 000 € investis en 2014
+capital_de_depart = 10000.0
+capital_final, historique_capital = capitalisation_taux_variable(capital_de_depart,taux_oat_historique)
+
+print(f"\n--- Simulation    : {capital_de_depart:,.0f}€ investis en OAT 10 ans (2014-2024) ---")
+print(f"Capital de départ   : {capital_de_depart:>12,.2f} €")
+print(f"Capital final       : {capital_final:>12,.2f} €")
+print(f"Gain total          : {((capital_final / capital_de_depart) - 1) * 100:>11.2f} %")
