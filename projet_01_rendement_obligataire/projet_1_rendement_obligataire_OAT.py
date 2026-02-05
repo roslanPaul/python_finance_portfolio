@@ -169,3 +169,18 @@ while i < len(historique_capital):
 else:
     # Le bloc 'else' d'un while s'execute SEULEMENT si la boucle finit sans 'break'
     print(f"Le capital n'a jamais dépassé {seuil_cible:,.0f}€ sur la période.")
+    
+# -----------------------------------------------------------------------------
+# PARTIE 6 — FONCTION AVEC ARGUMENT PAR DÉFAUT + COMPARAISON SCÉNARIOS
+# -----------------------------------------------------------------------------
+# Analogie : les arguments par défaut sont comme une recette avec des ingrédients
+#            "standard". On peut en changer un si on veut, sinon on garde le standard.
+# -----------------------------------------------------------------------------
+
+def rendement_annuel_moyen(liste_taux):
+    """
+    Calcule le rendement annuel moyen à partir d'une liste de taux.
+    C'est la moyenne arithmétique simple des taux.
+    """
+    
+    return sum(liste_taux) / len(liste_taux)
