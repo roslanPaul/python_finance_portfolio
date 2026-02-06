@@ -184,3 +184,29 @@ def rendement_annuel_moyen(liste_taux):
     """
     
     return sum(liste_taux) / len(liste_taux)
+
+def simuler_placement(capital_initial=10000.0, duree_annees=5, taux_fixe=None, liste_taux=None):
+    """
+    Simule un placement obligataire.
+
+    Si liste_taux est fournie → on utilise les taux réels année par année.
+    Sinon → on utilise taux_fixe comme taux constant sur duree_annees années.
+
+    Arguments par défaut :
+        capital_initial = 10000.0  (le standard)
+        duree_annees    = 5
+        taux_fixe       = None     (si None, on cherche liste_taux)
+    """
+    
+    if liste_taux is not None:
+        # Cas 1 : taux variables réels, on prend les N premiers
+        taux_a_utiliser = liste_taux[:duree_annees]
+    elif taux_fixe is not None:
+        # Cas 2 : taux fixe constant, on crée une liste remplie de ce taux
+        taux_a_utiliser = [taux_fixe] * duree_annees
+    else:
+        print("Erreur : il faut fournir taux_fixe ou liste_taux !")
+        return None, None
+    
+    capital_final, historique = capitalisation_taux_variable(capital_initial, taux_a_utiliser)
+    return capital_final, historique
